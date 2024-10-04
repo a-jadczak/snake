@@ -3,17 +3,28 @@ import { Vector2 } from "./Vector/vector2.js";
 // -1   1
 //   -1
 export class Snake {
-    constructor({ startPosition }) {
+    //#endregion
+    constructor({ startPosition, snakeColor }) {
         this.START_DIRECTION = Vector2.RIGHT;
-        this.snakePositions = [];
+        this.snakePositions = [Vector2.UP];
         this.snakeDirection = this.START_DIRECTION;
         this.START_POSITON = startPosition;
+        this.SNAKE_COLOR = snakeColor;
     }
     move() {
     }
     eat() {
     }
+    grow() {
+        let lastPos = this.getLastPosition();
+    }
     changeDirection(newDirection) {
         this.snakeDirection = newDirection;
+    }
+    getFirstPosition() {
+        return this.snakePositions[0];
+    }
+    getLastPosition() {
+        return this.snakePositions[this.snakePositions.length - 1];
     }
 }
