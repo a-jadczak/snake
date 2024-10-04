@@ -1,0 +1,8 @@
+{
+    "compilerOptions": 
+    {
+        "rootDir" : "./src", //Pliki TS
+        "outDir" : "./dist", //Pliki JS
+        "target" : "ES6"
+    }
+}

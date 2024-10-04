@@ -1,0 +1,45 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    color: white;
+    font-family: sans-serif;
+}
+
+body
+{
+    background-color: #232323;
+
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-container
+{
+    max-width: 40%;
+    border: 2px solid rebeccapurple;
+}
+#game-container h1
+{
+    text-align: center;
+}
+
+
+/**/
+#board
+{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+.square {
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    border: 1px solid rgb(129, 129, 211);
+}
