@@ -1,5 +1,5 @@
 import { boardElement } from "./main.js";
-import { Vector2 } from "./Vector/vector2.js";
+import { BoardSquare } from "./boardSquare/boardSquare.js";
 export const render = (board) => {
     renderBoard(board);
 };
@@ -9,7 +9,7 @@ const renderBoard = (board) => {
         for (let j = 0; j < board.size; j++) {
             const element = document.createElement("div");
             element.classList.add("square");
-            const elementPosition = new Vector2(j, i);
+            const elementPosition = new BoardSquare(j, i);
             board.board.set(elementPosition, element);
             boardElement.appendChild(element);
         }

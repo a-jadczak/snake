@@ -1,12 +1,12 @@
-import { Vector2 } from "./Vector/vector2.js";
+import { BoardSquare } from "./boardSquare/boardSquare.js";
 //    1
 // -1   1
 //   -1
 export class Snake {
     //#endregion
     constructor({ startPosition, snakeColor }) {
-        this.START_DIRECTION = Vector2.RIGHT;
-        this.snakePositions = [Vector2.UP];
+        this.START_DIRECTION = BoardSquare.RIGHT;
+        this.snakePositions = [BoardSquare.UP];
         this.snakeDirection = this.START_DIRECTION;
         this.START_POSITON = startPosition;
         this.SNAKE_COLOR = snakeColor;

@@ -1,4 +1,4 @@
-import { Vector2 } from "./Vector/vector2";
+import { BoardSquare } from "./boardSquare/boardSquare";
 
 export class Board
 {
@@ -6,5 +6,5 @@ export class Board
     speed : number;
     boardColor: string;
 
-    board = new Map<Vector2, HTMLElement>(); // FIXME: Maps can only be accessed by reference type find a way to place it as a copy type
+    board = new Map<BoardSquare, HTMLElement>(); // FIXME: Maps can only be accessed by reference type find a way to place it as a copy type
 }

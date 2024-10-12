@@ -1,4 +1,4 @@
-import { Vector2 } from "./Vector/vector2.js";
+import { BoardSquare } from "./boardSquare/boardSquare.js";
 import { Color } from "./Color/Color.js"
 
 //    1
@@ -7,18 +7,18 @@ import { Color } from "./Color/Color.js"
 
 export class Snake
 {
-    START_POSITON : Vector2;
-    START_DIRECTION = Vector2.RIGHT;
+    START_POSITON : BoardSquare;
+    START_DIRECTION = BoardSquare.RIGHT;
 
-    snakePositions : Vector2[] = [Vector2.UP];
-    snakeDirection : Vector2 = this.START_DIRECTION; 
+    snakePositions : BoardSquare[] = [BoardSquare.UP];
+    snakeDirection : BoardSquare = this.START_DIRECTION; 
 
     //#region VISUAL
     SNAKE_COLOR : string;
 
     //#endregion
 
-    constructor ( {startPosition, snakeColor} : {startPosition : Vector2, snakeColor : Color} )
+    constructor ( {startPosition, snakeColor} : {startPosition : BoardSquare, snakeColor : Color} )
     {
         this.START_POSITON = startPosition;
         this.SNAKE_COLOR = snakeColor;
@@ -40,18 +40,18 @@ export class Snake
         let lastPos = this.getLastPosition();
     }
 
-    changeDirection(newDirection : Vector2)
+    changeDirection(newDirection : BoardSquare)
     {
         this.snakeDirection = newDirection;
     }
 
 
-    getFirstPosition() : Vector2
+    getFirstPosition() : BoardSquare
     {
         return this.snakePositions[0];
     }
 
-    getLastPosition() : Vector2
+    getLastPosition() : BoardSquare
     {
         return this.snakePositions[this.snakePositions.length - 1];
     }
