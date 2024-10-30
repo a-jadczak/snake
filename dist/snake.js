@@ -4,7 +4,7 @@ import { BoardSquare } from "./boardSquare/boardSquare.js";
 //   -1
 export class Snake {
     //#endregion
-    constructor({ startPosition, snakeColor }) {
+    constructor(startPosition, snakeColor) {
         this.START_DIRECTION = BoardSquare.RIGHT;
         this.snakePositions = [BoardSquare.UP];
         this.snakeDirection = this.START_DIRECTION;
@@ -24,6 +24,9 @@ export class Snake {
     getFirstPosition() {
         return this.snakePositions[0];
     }
+    // getNextPosition() : BoardSquare
+    // {
+    // }
     getLastPosition() {
         return this.snakePositions[this.snakePositions.length - 1];
     }

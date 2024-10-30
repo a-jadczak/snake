@@ -18,11 +18,10 @@ export class Snake
 
     //#endregion
 
-    constructor ( {startPosition, snakeColor} : {startPosition : BoardSquare, snakeColor : Color} )
+    constructor (startPosition : BoardSquare, snakeColor : Color)
     {
         this.START_POSITON = startPosition;
         this.SNAKE_COLOR = snakeColor;
-
     }
 
     move() 
@@ -50,6 +49,11 @@ export class Snake
     {
         return this.snakePositions[0];
     }
+
+    // getNextPosition() : BoardSquare
+    // {
+
+    // }
 
     getLastPosition() : BoardSquare
     {
