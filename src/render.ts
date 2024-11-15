@@ -23,7 +23,7 @@ const renderBoard = (board: Board) : void =>
             const elementPosition = new BoardSquare(j, i, element);
 
             // Appends elements to js board map
-            board.boardMap.set(elementPosition.id, elementPosition);
+            board.boardMap.set(elementPosition.toString(), elementPosition);
 
             // Appends elements to html board
             boardElement.appendChild(element);
@@ -36,6 +36,5 @@ const renderBoard = (board: Board) : void =>
 export const renderSnake = (snake : Snake, board : Board) : void =>
 {
     console.log("Snake position: (bellow)")
-    console.log(snake.START_POSITON);
-    //board.board.get(snake.snakePositions[0]).style.backgroundColor = "brown";
+    board.getSquare(snake.START_POSITON.toString()).htmlElement.style.backgroundColor = "blue";
 }

@@ -2,7 +2,7 @@ import { Board } from "./board.js";
 import { render, renderSnake } from "./render.js";
 import { Snake } from "./snake.js";
 import { BoardSquare } from "./boardSquare/boardSquare.js";
-import listenToPlayer  from "./input.js"
+import getPlayerDirection from "./input.js";
 
 export const boardElement : HTMLElement = document.querySelector("#board");
 const gameDataElement : HTMLElement = document.querySelector(".game-data");
@@ -28,10 +28,15 @@ const init = function()
     const snakeColor = "lawnGreen";
 
     snake = new Snake(startPosition, snakeColor);
-
-    listenToPlayer();
 }
 
+
+document.addEventListener("keydown", function(e)
+{
+    const direction = getPlayerDirection(e.key);
+
+    snake.changeDirection(direction);
+});
 
 const update = function() 
 {
@@ -39,5 +44,4 @@ const update = function()
 }
 
 init();
-
 update();

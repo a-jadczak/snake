@@ -6,6 +6,7 @@ export class Snake {
     //#endregion
     constructor(startPosition, snakeColor) {
         this.START_DIRECTION = BoardSquare.RIGHT;
+        // Every snake's square element position
         this.snakePositions = [BoardSquare.UP];
         this.snakeDirection = this.START_DIRECTION;
         this.START_POSITON = startPosition;

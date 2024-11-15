@@ -9,6 +9,9 @@ export class BoardSquare {
         this.id = BoardSquare.squareCounter;
         BoardSquare.squareCounter++;
     }
+    toString() {
+        return `${this.x}${this.y}`;
+    }
 }
 BoardSquare.squareCounter = 0;
 //Static properties for shorthand

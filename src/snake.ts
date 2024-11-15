@@ -10,6 +10,7 @@ export class Snake
     START_POSITON : BoardSquare;
     START_DIRECTION = BoardSquare.RIGHT;
 
+    // Every snake's square element position
     snakePositions : BoardSquare[] = [BoardSquare.UP];
     snakeDirection : BoardSquare = this.START_DIRECTION; 
 

@@ -23,6 +23,11 @@ export class BoardSquare
         BoardSquare.squareCounter++;
     }
 
+    toString()
+    {
+        return `${this.x}${this.y}`
+    }
+
     //Static properties for shorthand
     static DOWN = new BoardSquare(0, -1, undefined);
     static UP = new BoardSquare(0, 1, undefined);
