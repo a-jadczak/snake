@@ -9,6 +9,7 @@ const pointsElement = gameDataElement.querySelector(".points");
 const difficultyElement = gameDataElement.querySelector(".difficulty");
 let board;
 let snake;
+const interval = 200;
 const init = function () {
     board = new Board();
     board.size = 10;
@@ -22,10 +23,13 @@ const init = function () {
 };
 document.addEventListener("keydown", function (e) {
     const direction = getPlayerDirection(e.key);
-    snake.changeDirection(direction);
+    console.log(direction);
+    snake.setDirection(direction);
 });
+// Function called every interval
 const update = function () {
     renderSnake(snake, board);
 };
 init();
 update();
+setInterval(update, interval);

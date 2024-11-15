@@ -14,4 +14,14 @@ export class Board
     {
         return this.boardMap.get(position);
     }
+
+    tempClear()
+    {
+        this.boardMap.forEach(e => e.htmlElement.style.backgroundColor = "red")
+    }
+
+    paint(position : string)
+    {
+        this.getSquare(position).htmlElement.style.backgroundColor = "blue";
+    }
 }

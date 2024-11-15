@@ -5,6 +5,7 @@ const directions = new Map([
     ["up", BoardSquare.UP],
     ["down", BoardSquare.DOWN],
 ]);
+// TODO: Avoid pressing a backward key
 const getPlayerDirection = (key) => {
     switch (key) {
         case "a":

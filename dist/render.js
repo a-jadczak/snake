@@ -21,5 +21,12 @@ const renderBoard = (board) => {
 };
 export const renderSnake = (snake, board) => {
     console.log("Snake position: (bellow)");
-    board.getSquare(snake.START_POSITON.toString()).htmlElement.style.backgroundColor = "blue";
+    console.log(snake.getFirstPosition());
+    board.tempClear();
+    snake.move();
+    snake.snakePositions.forEach(pos => {
+        console.log(pos.toString());
+        board.paint(pos.toString());
+    });
+    //board.paint(snake.getFirstPosition().toString());
 };
