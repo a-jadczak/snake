@@ -12,6 +12,10 @@ const difficultyElement = gameDataElement.querySelector(".difficulty");
 let board : Board;
 let snake : Snake;
 const interval : number = 200;
+let currentDirection : BoardSquare = BoardSquare.LEFT;
+
+// Interval input flag to avoid double direction change that provides a bug
+let inputIntervalFlag = false;
 
 const init = function()
 {
@@ -31,18 +35,26 @@ const init = function()
     snake = new Snake(startPosition, snakeColor);
 }
 
-
+// FIXME: fix the bug when player's key input is too fast and validation of
+// doesn't catch current backwards direction
 document.addEventListener("keydown", function(e)
 {
-    const direction = getPlayerDirection(e.key);
-    console.log(direction)
-    snake.setDirection(direction);
+    if (inputIntervalFlag)
+        return;
+    
+    currentDirection = getPlayerDirection(e.key);
+    console.log(currentDirection)
+    inputIntervalFlag = true;
 });
+
 
 // Function called every interval
 const update = function() 
 {
+    snake.setDirection(currentDirection);   
     renderSnake(snake, board);
+
+    inputIntervalFlag = false;
 }
 
 init();
