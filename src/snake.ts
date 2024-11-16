@@ -78,6 +78,9 @@ export class Snake
 
     public setDirection(newDirection : BoardSquare)
     {
+        if (newDirection == null)
+            return;
+        
         this.currentDirection = newDirection;
     }
 

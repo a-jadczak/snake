@@ -1,25 +1,30 @@
 import { BoardSquare } from "./boardSquare/boardSquare.js";
-const directions = new Map([
-    ["left", BoardSquare.LEFT],
-    ["right", BoardSquare.RIGHT],
-    ["up", BoardSquare.UP],
-    ["down", BoardSquare.DOWN],
-]);
-// TODO: Avoid pressing a backward key
+let blockedDirection = ["d", "ArrowRight"];
+// Blocks backwards direction
+const setBlockedDirection = (newValue) => {
+    blockedDirection = newValue;
+};
 const getPlayerDirection = (key) => {
+    // @ts-ignore
+    if (blockedDirection.includes(key))
+        return null;
     switch (key) {
         case "a":
         case "ArrowLeft":
-            return directions.get("left");
+            setBlockedDirection(["d", "ArrowRight"]);
+            return BoardSquare.LEFT;
         case "w":
         case "ArrowUp":
-            return directions.get("up");
+            setBlockedDirection(["s", "ArrowDown"]);
+            return BoardSquare.UP;
         case "s":
         case "ArrowDown":
-            return directions.get("down");
+            setBlockedDirection(["w", "ArrowUp"]);
+            return BoardSquare.DOWN;
         case "d":
         case "ArrowRight":
-            return directions.get("right");
+            setBlockedDirection(["a", "ArrowLeft"]);
+            return BoardSquare.RIGHT;
         default:
             return null;
     }

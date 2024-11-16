@@ -32,4 +32,4 @@ const update = function () {
 };
 init();
 update();
-setInterval(update, interval);
+//setInterval(update, interval);

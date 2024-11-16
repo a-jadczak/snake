@@ -44,6 +44,8 @@ export class Snake {
     checkCollision() {
     }
     setDirection(newDirection) {
+        if (newDirection == null)
+            return;
         this.currentDirection = newDirection;
     }
     getFirstPosition() {
