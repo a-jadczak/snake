@@ -15,12 +15,17 @@ export class Board
         return this.boardMap.get(position);
     }
 
+    getSquareState(position : string)
+    {
+        return this.boardMap.get(position).squareState;
+    }
+
     tempClear()
     {
         this.boardMap.forEach(e => e.htmlElement.style.backgroundColor = "red")
     }
 
-    paint(position : string)
+    drawSquare(position : string)
     {
         this.getSquare(position).htmlElement.style.backgroundColor = "blue";
     }

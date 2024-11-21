@@ -7,10 +7,13 @@ export class Board {
     getSquare(position) {
         return this.boardMap.get(position);
     }
+    getSquareState(position) {
+        return this.boardMap.get(position).squareState;
+    }
     tempClear() {
         this.boardMap.forEach(e => e.htmlElement.style.backgroundColor = "red");
     }
-    paint(position) {
+    drawSquare(position) {
         this.getSquare(position).htmlElement.style.backgroundColor = "blue";
     }
 }

@@ -23,10 +23,10 @@ export const renderSnake = (snake, board) => {
     console.log("Snake position: (bellow)");
     console.log(snake.getFirstPosition());
     board.tempClear();
-    snake.move();
+    snake.move(board);
     snake.snakePositions.forEach(pos => {
         console.log(pos.toString());
-        board.paint(pos.toString());
+        board.drawSquare(pos.toString());
     });
     //board.paint(snake.getFirstPosition().toString());
 };

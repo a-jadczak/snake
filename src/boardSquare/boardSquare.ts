@@ -1,4 +1,6 @@
-export class BoardSquare
+import { SquareState } from "./squareState";
+import ITransform from "../ITransform";
+export class BoardSquare implements ITransform
 {
     static squareCounter : number = 0;
 
@@ -7,6 +9,9 @@ export class BoardSquare
     y: number;
 
     htmlElement : HTMLElement | undefined;
+
+    squareState : SquareState = 'empty'; //empty by default
+    
 
     constructor (x : number, y : number, htmlElement: HTMLElement)
     {

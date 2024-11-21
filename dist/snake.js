@@ -36,12 +36,15 @@ export class Snake {
     shiftArray(array, newValue) {
         return [newValue, ...array.slice(0, -1)];
     }
-    move() {
+    move(board) {
         this.updatePositions();
     }
     eat() {
     }
     checkCollision() {
+        // if pos.squareState !== empty
+        // or 
+        // pos === undefinded
     }
     setDirection(newDirection) {
         if (newDirection == null)

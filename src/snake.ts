@@ -1,3 +1,4 @@
+import { Board } from "./board.js";
 import { BoardSquare } from "./boardSquare/boardSquare.js";
 import { Color } from "./Color/Color.js"
 
@@ -61,7 +62,7 @@ export class Snake
         return [newValue, ...array.slice(0, -1)];
     }
 
-    public move() 
+    public move(board : Board) 
     {
         this.updatePositions();
     }
@@ -73,7 +74,9 @@ export class Snake
 
     private checkCollision()
     {
-
+        // if pos.squareState !== empty
+        // or 
+        // pos === undefinded
     }
 
     public setDirection(newDirection : BoardSquare)

@@ -1,0 +1,1 @@
+export type SquareState = 'snake' | 'empty' | 'fruit'

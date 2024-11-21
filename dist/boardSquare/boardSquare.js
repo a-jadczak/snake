@@ -1,5 +1,6 @@
 export class BoardSquare {
     constructor(x, y, htmlElement) {
+        this.squareState = 'empty'; //empty by default
         this.x = x;
         this.y = y;
         this.htmlElement = htmlElement;
