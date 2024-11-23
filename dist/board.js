@@ -5,6 +5,7 @@ export class Board {
         this.boardMap = new Map();
     }
     getSquare(position) {
+        console.log(this.boardMap);
         return this.boardMap.get(position);
     }
     getSquareState(position) {
@@ -13,7 +14,7 @@ export class Board {
     tempClear() {
         this.boardMap.forEach(e => e.htmlElement.style.backgroundColor = "red");
     }
-    drawSquare(position) {
-        this.getSquare(position).htmlElement.style.backgroundColor = "blue";
+    drawSquare(position, color) {
+        this.getSquare(position).htmlElement.style.backgroundColor = color;
     }
 }

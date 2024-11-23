@@ -1,4 +1,4 @@
-import { BoardSquare } from "./boardSquare/boardSquare.js";
+import Vector2 from "./vector2.js";
 
 let blockedDirection : string[] = ["d", "ArrowRight"];
 
@@ -8,7 +8,7 @@ const setBlockedDirection = (newValue : string[]) =>
     blockedDirection = newValue;
 }
 
-const getPlayerDirection = (key : string) : BoardSquare | null => 
+const getPlayerDirection = (key : string) : Vector2 | null => 
 {
     // @ts-ignore
     if (blockedDirection.includes(key))
@@ -19,19 +19,19 @@ const getPlayerDirection = (key : string) : BoardSquare | null =>
         case "a":
         case "ArrowLeft":
             setBlockedDirection(["d", "ArrowRight"]);
-            return BoardSquare.LEFT;
+            return Vector2.LEFT;
         case "w":
         case "ArrowUp":
             setBlockedDirection(["s", "ArrowDown"]);
-            return BoardSquare.UP;
+            return Vector2.UP;
         case "s":
         case "ArrowDown":
             setBlockedDirection(["w", "ArrowUp"]);
-            return BoardSquare.DOWN;
+            return Vector2.DOWN;
         case "d":
         case "ArrowRight":
             setBlockedDirection(["a", "ArrowLeft"]);
-            return BoardSquare.RIGHT;
+            return Vector2.RIGHT;
         default:
             return null;
     }

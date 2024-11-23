@@ -1,4 +1,6 @@
 import { BoardSquare } from "./boardSquare/boardSquare";
+import { SquareState } from "./boardSquare/squareState";
+import { Color } from "./Color/Color";
 
 export class Board
 {
@@ -10,23 +12,25 @@ export class Board
     // So simplest way is to set key as a parsed object
     boardMap : Map<string, BoardSquare> = new Map<string, BoardSquare>();
 
-    getSquare(position : string)
-    {
+    getSquare(position : string) : BoardSquare
+    {        
+        console.log(this.boardMap);
+        
         return this.boardMap.get(position);
     }
 
-    getSquareState(position : string)
+    getSquareState(position : string) : SquareState
     {
         return this.boardMap.get(position).squareState;
     }
 
-    tempClear()
+    tempClear() : void
     {
         this.boardMap.forEach(e => e.htmlElement.style.backgroundColor = "red")
     }
 
-    drawSquare(position : string)
+    drawSquare(position : string, color : Color) : void
     {
-        this.getSquare(position).htmlElement.style.backgroundColor = "blue";
+        this.getSquare(position).htmlElement.style.backgroundColor = color;
     }
 }

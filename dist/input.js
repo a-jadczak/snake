@@ -1,4 +1,4 @@
-import { BoardSquare } from "./boardSquare/boardSquare.js";
+import Vector2 from "./vector2.js";
 let blockedDirection = ["d", "ArrowRight"];
 // Blocks backwards direction
 const setBlockedDirection = (newValue) => {
@@ -12,19 +12,19 @@ const getPlayerDirection = (key) => {
         case "a":
         case "ArrowLeft":
             setBlockedDirection(["d", "ArrowRight"]);
-            return BoardSquare.LEFT;
+            return Vector2.LEFT;
         case "w":
         case "ArrowUp":
             setBlockedDirection(["s", "ArrowDown"]);
-            return BoardSquare.UP;
+            return Vector2.UP;
         case "s":
         case "ArrowDown":
             setBlockedDirection(["w", "ArrowUp"]);
-            return BoardSquare.DOWN;
+            return Vector2.DOWN;
         case "d":
         case "ArrowRight":
             setBlockedDirection(["a", "ArrowLeft"]);
-            return BoardSquare.RIGHT;
+            return Vector2.RIGHT;
         default:
             return null;
     }

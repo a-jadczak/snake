@@ -1,19 +1,16 @@
-import { BoardSquare } from "./boardSquare/boardSquare.js";
-//   -1
-// -1 0 1
-//    1
+import Vector2 from "./vector2.js";
 export class Snake {
     //#endregion
     constructor(startPosition, snakeColor) {
         //START_POSITON : BoardSquare;
-        this.currentDirection = BoardSquare.LEFT;
+        this.currentDirection = Vector2.LEFT;
         // Every snake's square element position
         this.snakePositions = [
-            new BoardSquare(5, 5, undefined),
-            new BoardSquare(6, 5, undefined),
-            new BoardSquare(7, 5, undefined),
-            new BoardSquare(8, 5, undefined),
-            new BoardSquare(9, 5, undefined),
+            new Vector2(5, 5),
+            new Vector2(6, 5),
+            new Vector2(7, 5),
+            new Vector2(8, 5),
+            new Vector2(9, 5),
         ];
         //this.START_POSITON = startPosition;
         this.SNAKE_COLOR = snakeColor;
@@ -27,9 +24,10 @@ export class Snake {
             direction = 1 0
             5,3 += 1 0
         */
-        let copy = new BoardSquare(this.snakePositions[0].x, this.snakePositions[0].y, undefined);
+        let copy = new Vector2(this.snakePositions[0].x, this.snakePositions[0].y);
         copy.x += this.currentDirection.x;
         copy.y += this.currentDirection.y;
+        this.previousTailPosition = this.getLastPosition();
         const newArr = this.shiftArray(this.snakePositions, copy);
         this.snakePositions = newArr;
     }
@@ -56,11 +54,8 @@ export class Snake {
     }
     // Returns a previous position of the snake's tail
     getPreviousTailPosition() {
-        return null;
+        return this.previousTailPosition;
     }
-    // getNextPosition() : BoardSquare
-    // {
-    // }
     getLastPosition() {
         return this.snakePositions[this.snakePositions.length - 1];
     }

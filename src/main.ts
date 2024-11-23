@@ -1,8 +1,8 @@
 import { Board } from "./board.js";
 import { render, renderSnake } from "./render.js";
 import { Snake } from "./snake.js";
-import { BoardSquare } from "./boardSquare/boardSquare.js";
 import getPlayerDirection from "./input.js";
+import Vector2 from "./vector2.js";
 
 export const boardElement : HTMLElement = document.querySelector("#board");
 const gameDataElement : HTMLElement = document.querySelector(".game-data");
@@ -12,28 +12,38 @@ const difficultyElement = gameDataElement.querySelector(".difficulty");
 let board : Board;
 let snake : Snake;
 const interval : number = 200;
-let currentDirection : BoardSquare = BoardSquare.LEFT;
+let currentDirection : Vector2 = Vector2.LEFT;
 
 // Interval input flag to avoid double direction change that provides a bug
-let inputIntervalFlag = false;
+let inputIntervalFlag : boolean = false;
 
-const init = function()
+const init = function() : void
 {
     board = new Board()
     board.size = 10
 
     render(board);
-    
-    // Calculates start position based on boardSize
-    const pos : number = Math.floor(board.size / 2);
 
     // Sets startPosition
-    const startPosition : BoardSquare = new BoardSquare(pos, pos, undefined); //FIXME: Change undefined
+    const startPosition : Vector2 = calculateStartSnakePosition();
 
     const snakeColor = "lawnGreen";
 
     snake = new Snake(startPosition, snakeColor);
 }
+
+/// Calculates snake start position based on board size
+const calculateStartSnakePosition = () : Vector2 =>
+{
+    // Calculates start position based on boardSize
+    const pos : number = Math.floor(board.size / 2);
+
+    // Sets startPosition
+    const startPosition : Vector2 = new Vector2(pos, pos);
+
+    return startPosition;
+}
+
 
 // FIXME: fix the bug when player's key input is too fast and validation of
 // doesn't catch current backwards direction
@@ -49,7 +59,7 @@ document.addEventListener("keydown", function(e)
 
 
 // Function called every interval
-const update = function() 
+const update = function() : void
 {
     snake.setDirection(currentDirection);   
     renderSnake(snake, board);
@@ -60,4 +70,4 @@ const update = function()
 init();
 update();
 
-//setInterval(update, interval);
+setInterval(update, interval);
