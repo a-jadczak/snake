@@ -5,16 +5,15 @@ export class Board {
         this.boardMap = new Map();
     }
     getSquare(position) {
-        console.log(this.boardMap);
         return this.boardMap.get(position);
     }
     getSquareState(position) {
         return this.boardMap.get(position).squareState;
     }
-    tempClear() {
-        this.boardMap.forEach(e => e.htmlElement.style.backgroundColor = "red");
+    setSquareState(position, squareState) {
+        this.boardMap.get(position).squareState = squareState;
     }
-    drawSquare(position, color) {
+    paintSquare(position, color) {
         this.getSquare(position).htmlElement.style.backgroundColor = color;
     }
 }

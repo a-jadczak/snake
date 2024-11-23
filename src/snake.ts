@@ -1,4 +1,6 @@
 import { Board } from "./board.js";
+import { BoardSquare } from "./boardSquare/boardSquare.js";
+import { SquareState } from "./boardSquare/squareState.js";
 import { Color } from "./Color/Color.js"
 import Vector2 from "./vector2.js"
 
@@ -9,16 +11,19 @@ export class Snake
 
     // Every snake's square element position
     public snakePositions : Vector2[] = [
+        new Vector2(3, 5),
+        new Vector2(4, 5),
         new Vector2(5, 5),
         new Vector2(6, 5),
         new Vector2(7, 5),
         new Vector2(8, 5),
-        new Vector2(9, 5),
     ];
 
     // Variable containing previous last position of tail
     // it's for like cleaning boardSquare where snake last appeared instead of cleaning all boardsquares every snake move
     previousTailPosition : Vector2;
+
+    nextPosition : Vector2;
 
     //#region VISUAL
     SNAKE_COLOR : string;
@@ -37,6 +42,12 @@ export class Snake
         let lastPos = this.getLastPosition();
     }
 
+    private updateSquareState(board : Board)
+    {
+        board.setSquareState(this.previousTailPosition.toString(), "empty");
+        board.setSquareState(this.nextPosition.toString(), "snake");
+    }
+
     private updatePositions()
     {
         /*
@@ -44,18 +55,25 @@ export class Snake
             5,3 += 1 0        
         */
 
-        let copy: Vector2 = new Vector2(
+        this.nextPosition = this.getNextPosition();
+        this.previousTailPosition = this.getLastPosition();
+
+        const newArr : Vector2[] = this.shiftArray(this.snakePositions, this.nextPosition);
+        
+        this.snakePositions = newArr;
+    }
+
+    private getNextPosition() : Vector2
+    {        
+        const nextPosition: Vector2 = new Vector2 (
             this.snakePositions[0].x,
             this.snakePositions[0].y,
         );
-        copy.x += this.currentDirection.x;
-        copy.y += this.currentDirection.y;
 
-        this.previousTailPosition = this.getLastPosition();
+        nextPosition.x += this.currentDirection.x;
+        nextPosition.y += this.currentDirection.y;
 
-        const newArr : Vector2[] = this.shiftArray(this.snakePositions, copy);
-        
-        this.snakePositions = newArr;
+        return nextPosition
     }
 
     private shiftArray(array: Vector2[], newValue : Vector2) : Vector2[]
@@ -65,7 +83,9 @@ export class Snake
 
     public move(board : Board) 
     {
+        this.checkCollision(board);
         this.updatePositions();
+        this.updateSquareState(board);
     }
 
     public eat()
@@ -73,11 +93,28 @@ export class Snake
 
     }
 
-    private checkCollision()
+    private checkCollision(board : Board)
     {
-        // if pos.squareState !== empty
-        // or 
-        // pos === undefinded
+        // try catch because sometimes method try to refer to unexisting index in array (out of board position)
+        let nextSquareState : SquareState;
+        try 
+        {
+            nextSquareState = 
+                board.getSquareState(this.getNextPosition().toString());    
+        }
+        catch (exception)
+        {
+            // Game over
+            alert("Game over")
+            document.location = "";
+        }
+        
+        if (nextSquareState !== "empty")
+        {
+            // Game over
+            alert("Game over")
+            document.location = "";
+        }
     }
 
     public setDirection(newDirection : Vector2)
@@ -88,16 +125,9 @@ export class Snake
         this.currentDirection = newDirection;
     }
 
-
     public getFirstPosition() : Vector2
     {
         return this.snakePositions[0];
-    }
-
-    // Returns a previous position of the snake's tail
-    public getPreviousTailPosition() : Vector2
-    {
-        return this.previousTailPosition;
     }
 
     private getLastPosition() : Vector2

@@ -21,17 +21,14 @@ const renderBoard = (board) => {
             boardElement.appendChild(element);
         }
     }
-    console.log(board);
 };
 export const renderSnake = (snake, board) => {
-    console.log("Snake position: (bellow)");
-    console.log(snake.getFirstPosition());
     snake.move(board);
     snake.snakePositions.forEach(pos => {
-        console.log(pos.toString());
-        board.drawSquare(pos.toString(), "blue");
+        //console.log(pos.toString())
+        board.paintSquare(pos.toString(), "blue");
     });
     // Cleans board
-    board.drawSquare(snake.previousTailPosition.toString(), "gray");
+    board.paintSquare(snake.previousTailPosition.toString(), "gray");
     //board.paint(snake.getFirstPosition().toString());
 };
