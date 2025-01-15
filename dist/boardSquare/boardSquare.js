@@ -7,5 +7,9 @@ export class BoardSquare {
         this.id = BoardSquare.squareCounter;
         BoardSquare.squareCounter++;
     }
+    override(htmlElement, squareState) {
+        this.htmlElement = htmlElement;
+        this.squareState = squareState;
+    }
 }
 BoardSquare.squareCounter = 0;

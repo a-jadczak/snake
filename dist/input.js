@@ -1,4 +1,4 @@
-import Vector2 from "./vector2.js";
+import Vector2 from "./Math/vector2.js";
 let blockedDirection = ["d", "ArrowRight"];
 // Blocks backwards direction
 const setBlockedDirection = (newValue) => {

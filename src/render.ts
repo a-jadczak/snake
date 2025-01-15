@@ -2,14 +2,15 @@ import { Board } from "./board.js";
 import { boardElement } from "./main.js";
 import { Snake } from "./snake.js";
 import { BoardSquare } from "./boardSquare/boardSquare.js";
-import Vector2 from "./vector2.js";
+import Vector2 from "./Math/vector2.js";
+import Fruit from "./Obstacles/fruit.js";
 
 export const render = (board : Board) : void =>
 {
     renderBoard(board);
 }
 
-/// Apennd HTML elements to board based on board data and fills Board map
+/// Append HTML elements to board based on board data and fills Board map
 const renderBoard = (board: Board) : void =>
 {
     boardElement.style.gridTemplateColumns = 'repeat('+board.size+', 1fr)';
@@ -26,8 +27,7 @@ const renderBoard = (board: Board) : void =>
             const element : HTMLElement = document.createElement("div");
             element.classList.add("square");
         
-            const elementPosition : BoardSquare 
-                = new BoardSquare(new Vector2(j, i), element);
+            const elementPosition : BoardSquare = new BoardSquare(new Vector2(j, i), element);
 
             // Appends elements to js board map
             fillBoardMap(elementPosition.vector2.toString(), elementPosition)
@@ -37,6 +37,20 @@ const renderBoard = (board: Board) : void =>
         }
     }
 }
+
+const renderFruit = (board: Board) =>
+{
+    const randomPosition = board.getRandomEmptySquare();
+    const imageSource = "./../public/apple.svg";
+    
+    const imageElement: HTMLElement = document.createElement("img");
+    imageElement.setAttribute("src", imageSource);
+    imageElement.classList.add("obstacle");
+
+    const boardSquare = board.getSquare(randomPosition.toString());
+    boardSquare.squareState = "fruit";
+    boardSquare.htmlElement.appendChild(imageElement);
+} 
 
 export const renderSnake = (snake : Snake, board : Board) : void =>
 {
@@ -49,7 +63,5 @@ export const renderSnake = (snake : Snake, board : Board) : void =>
 
     // Cleans board
     board.paintSquare(snake.previousTailPosition.toString(), "gray");
-
-    //board.paint(snake.getFirstPosition().toString());
-
+    renderFruit(board);
 }

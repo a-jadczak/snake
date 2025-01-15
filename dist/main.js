@@ -2,7 +2,7 @@ import { Board } from "./board.js";
 import { render, renderSnake } from "./render.js";
 import { Snake } from "./snake.js";
 import getPlayerDirection from "./input.js";
-import Vector2 from "./vector2.js";
+import Vector2 from "./Math/vector2.js";
 export const boardElement = document.querySelector("#board");
 const gameDataElement = document.querySelector(".game-data");
 const pointsElement = gameDataElement.querySelector(".points");

@@ -1,6 +1,8 @@
-import { BoardSquare } from "./boardSquare/boardSquare";
-import { SquareState } from "./boardSquare/squareState";
-import { Color } from "./Color/Color";
+import { BoardSquare } from "./boardSquare/boardSquare.js";
+import { SquareState } from "./boardSquare/squareState.js";
+import { Color } from "./Color/Color.js";
+import { getRandom } from "./Math/random.js";
+import Vector2 from "./Math/vector2.js";
 
 export class Board
 {
@@ -12,23 +14,54 @@ export class Board
     // So simplest way is to set key as a parsed object
     boardMap : Map<string, BoardSquare> = new Map<string, BoardSquare>();
 
-    getSquare(position : string) : BoardSquare
+
+    public getSquare(position : string) : BoardSquare
     {        
         return this.boardMap.get(position);
     }
 
-    getSquareState(position : string) : SquareState
+    public getSquareState(position : string) : SquareState
     {
-        return this.boardMap.get(position).squareState;
+        return this.getSquare(position).squareState;
     }
 
-    setSquareState(position : string, squareState : SquareState) : void
+    public setSquareState(position : string, squareState : SquareState) : void
     {
-        this.boardMap.get(position).squareState = squareState;
+        this.getSquare(position).squareState = squareState;
     }
 
-    paintSquare(position : string, color : Color) : void
+    public paintSquare(position : string, color : Color) : void
     {
         this.getSquare(position).htmlElement.style.backgroundColor = color;
+    }
+
+    // TODO: Test if works
+    // Returns a random position where there is an empty square. Used for generating obstacles.
+    public getRandomEmptySquare() : Vector2
+    {
+        // looping through array to add 
+        let emptyPositionMap : Vector2[] = [];
+        this.boardMap.forEach(e => {
+            if (e.squareState == "empty")
+                emptyPositionMap.push(e.vector2);
+        });
+
+        // random index from range of array with empty squares
+        let randomIndex: number = getRandom(emptyPositionMap.length);
+        
+        // random position
+        let randomEmptyPosition: Vector2 = emptyPositionMap[randomIndex];
+        
+        // clearing array
+        emptyPositionMap = [];
+
+        return randomEmptyPosition;
+    }
+    
+    public handleGameOver = () =>
+    {
+        // Game over
+        alert("Game over")
+        document.location = "";
     }
 }

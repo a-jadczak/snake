@@ -1,4 +1,4 @@
-import Vector2 from "./vector2.js";
+import Vector2 from "./Math/vector2.js";
 export class Snake {
     //#endregion
     constructor(startPosition, snakeColor) {
@@ -58,15 +58,13 @@ export class Snake {
                 board.getSquareState(this.getNextPosition().toString());
         }
         catch (exception) {
-            // Game over
-            alert("Game over");
-            document.location = "";
+            board.handleGameOver();
         }
         if (nextSquareState !== "empty") {
-            // Game over
-            alert("Game over");
-            document.location = "";
+            board.handleGameOver();
         }
+    }
+    gameOver() {
     }
     setDirection(newDirection) {
         if (newDirection == null)

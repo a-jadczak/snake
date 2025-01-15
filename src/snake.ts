@@ -2,7 +2,7 @@ import { Board } from "./board.js";
 import { BoardSquare } from "./boardSquare/boardSquare.js";
 import { SquareState } from "./boardSquare/squareState.js";
 import { Color } from "./Color/Color.js"
-import Vector2 from "./vector2.js"
+import Vector2 from "./Math/vector2.js"
 
 export class Snake
 {
@@ -104,17 +104,18 @@ export class Snake
         }
         catch (exception)
         {
-            // Game over
-            alert("Game over")
-            document.location = "";
+            board.handleGameOver();
         }
         
         if (nextSquareState !== "empty")
         {
-            // Game over
-            alert("Game over")
-            document.location = "";
+            board.handleGameOver();
         }
+    }
+    
+    private gameOver()
+    {
+
     }
 
     public setDirection(newDirection : Vector2)

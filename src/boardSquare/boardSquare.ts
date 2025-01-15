@@ -1,5 +1,5 @@
-import { SquareState } from "./squareState";
-import Vector2 from "../vector2";
+import { SquareState } from "./squareState.js";
+import Vector2 from "../Math/vector2.js";
 
 export class BoardSquare
 {
@@ -21,5 +21,11 @@ export class BoardSquare
         this.id = BoardSquare.squareCounter;
 
         BoardSquare.squareCounter++;
+    }
+
+    public override(htmlElement: HTMLElement, squareState: SquareState)
+    {
+        this.htmlElement = htmlElement;
+        this.squareState = squareState;
     }
 }

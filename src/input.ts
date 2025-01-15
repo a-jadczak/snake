@@ -1,4 +1,4 @@
-import Vector2 from "./vector2.js";
+import Vector2 from "./Math/vector2.js";
 
 let blockedDirection : string[] = ["d", "ArrowRight"];
 
