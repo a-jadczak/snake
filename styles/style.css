@@ -22,12 +22,26 @@ body
 
 #game-container
 {
-    max-width: 40%;
-    border: 2px solid rebeccapurple;
+
 }
 #game-container h1
 {
     text-align: center;
+}
+.game-data
+{
+    display: flex;
+    justify-content: space-around;
+
+    background-color: rgb(15, 48, 89);
+}
+.game-data-item
+{
+    display: flex;
+    align-items: center;
+    padding: .5em;
+
+    font-size: 1.5em;
 }
 
 
@@ -36,6 +50,7 @@ body
 {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
+
 }
 .square {
     width: 30px;
@@ -46,6 +61,14 @@ body
 .obstacle {
     width: 100%;
     height: 100%;
+}
+
+.snake-head {
+
+}
+
+.snake-tail {
+    
 }
 
 /* Animations */

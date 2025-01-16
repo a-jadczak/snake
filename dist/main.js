@@ -43,7 +43,11 @@ document.addEventListener("keydown", function (e) {
 const update = function () {
     snake.setDirection(currentDirection);
     renderSnake(snake, board);
+    updateUI();
     inputIntervalFlag = false;
+};
+const updateUI = () => {
+    pointsElement.textContent = snake.score.toString();
 };
 init();
 update();

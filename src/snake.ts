@@ -2,12 +2,15 @@ import { Board } from "./board.js";
 import { BoardSquare } from "./boardSquare/boardSquare.js";
 import { SquareState } from "./boardSquare/squareState.js";
 import { Color } from "./Color/Color.js"
+import { checkWin } from "./events.js";
 import Vector2 from "./Math/vector2.js"
 import { lastRenderedFruit, renderFruit, unrender } from "./render.js";
 import { BoardFunction, HTMLElement2D } from "./types.js";
 
 export class Snake
 {
+    public score: number;
+
     private snakeSquareStateBehaviours: Map<SquareState, BoardFunction> = new Map<SquareState, BoardFunction>([
         ["empty", (board: Board) => {}],
         ["snake", function(board: Board) { board.handleGameOver() }],
@@ -19,12 +22,6 @@ export class Snake
 
     // Every snake's square element position
     public snakePositions : Vector2[] = [
-        new Vector2(3, 5),
-        new Vector2(4, 5),
-        new Vector2(5, 5),
-        new Vector2(6, 5),
-        new Vector2(7, 5),
-        new Vector2(8, 5),
     ];
 
     // Variable containing previous last position of tail
@@ -42,12 +39,17 @@ export class Snake
     {
         //this.START_POSITON = startPosition;
         this.SNAKE_COLOR = snakeColor;
-        //this.snakePositions.push(startPosition);
+        this.snakePositions.push(startPosition);
+
+        this.score = 0;
     }
 
     private grow()
     {
         let lastPos = this.getLastPosition();
+        this.snakePositions.push(lastPos);
+
+        this.score++;
     }
 
     private updateSquareState(board : Board)
@@ -96,7 +98,7 @@ export class Snake
         this.updateSquareState(board);
     }
 
-    public eat(board: Board)
+    private eat(board: Board)
     {
         if (lastRenderedFruit != undefined)
         {
@@ -106,6 +108,8 @@ export class Snake
         this.grow();
         
         renderFruit(board);
+
+        checkWin(this.score, board);
     }
 
     private checkCollision(board : Board)

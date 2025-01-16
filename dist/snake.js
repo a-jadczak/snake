@@ -1,3 +1,4 @@
+import { checkWin } from "./events.js";
 import Vector2 from "./Math/vector2.js";
 import { lastRenderedFruit, renderFruit, unrender } from "./render.js";
 export class Snake {
@@ -11,20 +12,16 @@ export class Snake {
         //START_POSITON : BoardSquare;
         this.currentDirection = Vector2.LEFT;
         // Every snake's square element position
-        this.snakePositions = [
-            new Vector2(3, 5),
-            new Vector2(4, 5),
-            new Vector2(5, 5),
-            new Vector2(6, 5),
-            new Vector2(7, 5),
-            new Vector2(8, 5),
-        ];
+        this.snakePositions = [];
         //this.START_POSITON = startPosition;
         this.SNAKE_COLOR = snakeColor;
-        //this.snakePositions.push(startPosition);
+        this.snakePositions.push(startPosition);
+        this.score = 0;
     }
     grow() {
         let lastPos = this.getLastPosition();
+        this.snakePositions.push(lastPos);
+        this.score++;
     }
     updateSquareState(board) {
         board.setSquareState(this.previousTailPosition.toString(), "empty");
@@ -60,6 +57,7 @@ export class Snake {
         }
         this.grow();
         renderFruit(board);
+        checkWin(this.score, board);
     }
     checkCollision(board) {
         var _a;

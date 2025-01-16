@@ -6,8 +6,8 @@ import Vector2 from "./Math/vector2.js";
 
 export const boardElement : HTMLElement = document.querySelector("#board");
 const gameDataElement : HTMLElement = document.querySelector(".game-data");
-const pointsElement = gameDataElement.querySelector(".points");
-const difficultyElement = gameDataElement.querySelector(".difficulty");
+const pointsElement : HTMLElement = gameDataElement.querySelector(".points");
+const difficultyElement : HTMLElement = gameDataElement.querySelector(".difficulty");
 
 let board : Board;
 let snake : Snake;
@@ -62,8 +62,14 @@ const update = function() : void
 {
     snake.setDirection(currentDirection);   
     renderSnake(snake, board);
+    updateUI();
 
     inputIntervalFlag = false;
+}
+
+const updateUI = () =>
+{
+    pointsElement.textContent = snake.score.toString();
 }
 
 init();
