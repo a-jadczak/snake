@@ -1,7 +1,13 @@
 import Vector2 from "./Math/vector2.js";
+import { lastRenderedFruit, renderFruit, unrender } from "./render.js";
 export class Snake {
     //#endregion
     constructor(startPosition, snakeColor) {
+        this.snakeSquareStateBehaviours = new Map([
+            ["empty", (board) => { }],
+            ["snake", function (board) { board.handleGameOver(); }],
+            ["fruit", function (board) { this.eat(board); }.bind(this)]
+        ]);
         //START_POSITON : BoardSquare;
         this.currentDirection = Vector2.LEFT;
         // Every snake's square element position
@@ -48,21 +54,25 @@ export class Snake {
         this.updatePositions();
         this.updateSquareState(board);
     }
-    eat() {
+    eat(board) {
+        if (lastRenderedFruit != undefined) {
+            unrender(board, lastRenderedFruit);
+        }
+        this.grow();
+        renderFruit(board);
     }
     checkCollision(board) {
+        var _a;
         // try catch because sometimes method try to refer to unexisting index in array (out of board position)
         let nextSquareState;
         try {
-            nextSquareState =
-                board.getSquareState(this.getNextPosition().toString());
+            nextSquareState = board.getSquareState(this.getNextPosition().toString());
         }
         catch (exception) {
             board.handleGameOver();
         }
-        if (nextSquareState !== "empty") {
-            board.handleGameOver();
-        }
+        // this syntax just invoke function and sends argument ".(board);"
+        (_a = this.snakeSquareStateBehaviours.get(nextSquareState)) === null || _a === void 0 ? void 0 : _a(board);
     }
     gameOver() {
     }

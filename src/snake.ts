@@ -3,9 +3,17 @@ import { BoardSquare } from "./boardSquare/boardSquare.js";
 import { SquareState } from "./boardSquare/squareState.js";
 import { Color } from "./Color/Color.js"
 import Vector2 from "./Math/vector2.js"
+import { lastRenderedFruit, renderFruit, unrender } from "./render.js";
+import { BoardFunction, HTMLElement2D } from "./types.js";
 
 export class Snake
 {
+    private snakeSquareStateBehaviours: Map<SquareState, BoardFunction> = new Map<SquareState, BoardFunction>([
+        ["empty", (board: Board) => {}],
+        ["snake", function(board: Board) { board.handleGameOver() }],
+        ["fruit", function(board: Board) { this.eat(board) }.bind(this) ]
+    ])
+
     //START_POSITON : BoardSquare;
     currentDirection : Vector2 = Vector2.LEFT;
 
@@ -88,29 +96,33 @@ export class Snake
         this.updateSquareState(board);
     }
 
-    public eat()
+    public eat(board: Board)
     {
+        if (lastRenderedFruit != undefined)
+        {
+            unrender(board, lastRenderedFruit);
+        }
 
+        this.grow();
+        
+        renderFruit(board);
     }
 
     private checkCollision(board : Board)
     {
         // try catch because sometimes method try to refer to unexisting index in array (out of board position)
         let nextSquareState : SquareState;
-        try 
+        try
         {
-            nextSquareState = 
-                board.getSquareState(this.getNextPosition().toString());    
+            nextSquareState = board.getSquareState(this.getNextPosition().toString());
         }
         catch (exception)
         {
             board.handleGameOver();
         }
         
-        if (nextSquareState !== "empty")
-        {
-            board.handleGameOver();
-        }
+        // this syntax just invoke function and sends argument ".(board);"
+        this.snakeSquareStateBehaviours.get(nextSquareState)?.(board);
     }
     
     private gameOver()

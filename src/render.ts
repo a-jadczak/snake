@@ -3,7 +3,10 @@ import { boardElement } from "./main.js";
 import { Snake } from "./snake.js";
 import { BoardSquare } from "./boardSquare/boardSquare.js";
 import Vector2 from "./Math/vector2.js";
-import Fruit from "./Obstacles/fruit.js";
+import Fruit from "./Obstacles/Fruit.js";
+import { HTMLElement2D } from "./types.js";
+
+export let lastRenderedFruit: HTMLElement2D;
 
 export const render = (board : Board) : void =>
 {
@@ -38,7 +41,8 @@ const renderBoard = (board: Board) : void =>
     }
 }
 
-const renderFruit = (board: Board) =>
+/// Append Fruit on the board
+export const renderFruit = (board: Board): HTMLElement2D =>
 {
     const randomPosition = board.getRandomEmptySquare();
     const imageSource = "./../public/apple.svg";
@@ -48,9 +52,21 @@ const renderFruit = (board: Board) =>
     imageElement.classList.add("obstacle");
 
     const boardSquare = board.getSquare(randomPosition.toString());
+
     boardSquare.squareState = "fruit";
     boardSquare.htmlElement.appendChild(imageElement);
-} 
+ 
+    lastRenderedFruit = { element: imageElement, position: randomPosition, state: "fruit" };
+    return lastRenderedFruit;
+}
+
+export const unrender = (board: Board, htmlElement2D: HTMLElement2D) =>
+{
+    const boardSquare = board.getSquare(htmlElement2D.position.toString());
+
+    // deletes content inside boardSquare
+    boardSquare.htmlElement.innerHTML = "";
+}
 
 export const renderSnake = (snake : Snake, board : Board) : void =>
 {
@@ -63,5 +79,4 @@ export const renderSnake = (snake : Snake, board : Board) : void =>
 
     // Cleans board
     board.paintSquare(snake.previousTailPosition.toString(), "gray");
-    renderFruit(board);
 }

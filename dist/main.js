@@ -1,5 +1,5 @@
 import { Board } from "./board.js";
-import { render, renderSnake } from "./render.js";
+import { render, renderFruit, renderSnake } from "./render.js";
 import { Snake } from "./snake.js";
 import getPlayerDirection from "./input.js";
 import Vector2 from "./Math/vector2.js";
@@ -21,6 +21,7 @@ const init = function () {
     const startPosition = calculateStartSnakePosition();
     const snakeColor = "lawnGreen";
     snake = new Snake(startPosition, snakeColor);
+    renderFruit(board);
 };
 /// Calculates snake start position based on board size
 const calculateStartSnakePosition = () => {
@@ -36,7 +37,6 @@ document.addEventListener("keydown", function (e) {
     if (inputIntervalFlag)
         return;
     currentDirection = getPlayerDirection(e.key);
-    console.log(currentDirection);
     inputIntervalFlag = true;
 });
 // Function called every interval

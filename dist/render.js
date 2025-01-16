@@ -1,6 +1,7 @@
 import { boardElement } from "./main.js";
 import { BoardSquare } from "./boardSquare/boardSquare.js";
 import Vector2 from "./Math/vector2.js";
+export let lastRenderedFruit;
 export const render = (board) => {
     renderBoard(board);
 };
@@ -22,7 +23,8 @@ const renderBoard = (board) => {
         }
     }
 };
-const renderFruit = (board) => {
+/// Append Fruit on the board
+export const renderFruit = (board) => {
     const randomPosition = board.getRandomEmptySquare();
     const imageSource = "./../public/apple.svg";
     const imageElement = document.createElement("img");
@@ -31,6 +33,13 @@ const renderFruit = (board) => {
     const boardSquare = board.getSquare(randomPosition.toString());
     boardSquare.squareState = "fruit";
     boardSquare.htmlElement.appendChild(imageElement);
+    lastRenderedFruit = { element: imageElement, position: randomPosition, state: "fruit" };
+    return lastRenderedFruit;
+};
+export const unrender = (board, htmlElement2D) => {
+    const boardSquare = board.getSquare(htmlElement2D.position.toString());
+    // deletes content inside boardSquare
+    boardSquare.htmlElement.innerHTML = "";
 };
 export const renderSnake = (snake, board) => {
     snake.move(board);
@@ -40,5 +49,4 @@ export const renderSnake = (snake, board) => {
     });
     // Cleans board
     board.paintSquare(snake.previousTailPosition.toString(), "gray");
-    renderFruit(board);
 };
