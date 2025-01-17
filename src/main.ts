@@ -75,4 +75,4 @@ const updateUI = () =>
 init();
 update();
 
-setInterval(update, interval);
+//setInterval(update, interval);

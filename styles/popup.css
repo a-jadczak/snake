@@ -1,0 +1,107 @@
+#popup-background
+{
+    background-color: rgba(0, 0, 0, 0.55);
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#popup
+{   
+    width: clamp(300px, 50vh, 600px);
+    height: 50vh;
+    position: relative;
+    margin: 1em;
+    padding: 1em;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-content, .popup-settings-content
+{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-title, .popup-settings-title
+{
+    flex-grow: 1;
+    text-align: center;
+    padding: 1.5em;
+}
+
+.popup-btn-container
+{
+    flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+    gap: .75em;
+}
+
+.popup-settings-title
+{
+    flex-shrink: 1;
+    padding: .5em;
+}
+
+.popup-settings-options-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .75em;
+    
+    padding: 1.5em;
+
+    flex-grow: 3;
+}
+
+.popup-settings-container
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-option
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+}
+
+.popup-option span
+{
+    font-size: 1.5em;
+}
+
+.popup-btn
+{
+    background-color: #464655;
+    padding: .1em;
+
+    font-size: 2em;
+    cursor: pointer;
+    
+    border-radius: .2em;
+    border: none;
+}
+
+.popup-btn:hover
+{
+    background-color: #35353f;
+}
+
+select, input[type="color"]
+{
+    border: none;
+    padding: .25em;
+    border-radius: .25em;
+    font-size: 1.25em;
+}

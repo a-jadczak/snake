@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
     <script type="module" src="./dist/main.js" defer></script>
+    <link rel="stylesheet" href="styles/popup.css">
     <title>Snake</title>
 </head>
 <body>
@@ -22,7 +23,6 @@
     -->
 
     <div id="game-container">
-        <h1>Snake</h1>
         <div class="game-data">
             <div class="game-data-item">
                 <span class="points">48</span>
@@ -31,7 +31,47 @@
         <div id="board">
             
         </div>
+    </div>
 
+    <div id="popup-background">
+        <div id="popup">
+            <!-- <div class="popup-content">
+                <h1 class="popup-title">SNAKE</h1>
+
+                <div class="popup-btn-container">
+                    <button class="popup-btn">PLAY</button>
+                    <button class="popup-btn">SETTINGS</button>
+                </div>
+            </div> -->
+            <div class="popup-settings-container">
+                <h1 class="popup-settings-title">SETTINGS</h1>
+
+                <div class="popup-settings-options-container">
+                    <div class="popup-option">
+                        <span class="popup-option-text">Board size</span>
+                        <select id="board-size-select">
+                            <option value="10">10x10</option>
+                            <option value="20">20x20</option>
+                            <option value="30">30x30</option>
+                        </select>
+                    </div>
+                    
+                    <div class="popup-option">
+                        <span class="popup-option-text">Game speed</span>
+                        <select id="game-speed-select">
+                            <option value="10">SLOW</option>
+                            <option value="30">FAST</option>
+                        </select>
+                    </div>
+                    
+                    <div class="popup-option">
+                        <span class="popup-option-text">Snake color</span>
+                        <input type="color"/>
+                    </div>
+                </div>
+                <button class="popup-btn">SAVE</button>
+            </div>
+        </div>
     </div>
 
 </body>

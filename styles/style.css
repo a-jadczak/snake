@@ -19,6 +19,10 @@ body
     justify-content: center;
     align-items: center;
 }
+input, option, select
+{
+    background-color: #232323;
+}
 
 #game-container
 {
@@ -43,7 +47,6 @@ body
 
     font-size: 1.5em;
 }
-
 
 /**/
 #board
