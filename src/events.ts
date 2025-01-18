@@ -1,9 +1,14 @@
 import { Board } from "./board";
+import { openPopup } from "./handleUI.js";
+import { interval } from "./main.js";
 
 export const checkWin = (score: number, board: Board) =>
 {
-    if (score == (board.size*board.size) - 1)
+    const requireScore = (board.size*board.size) - 1;
+    if (score == requireScore)
     {
-        console.log("won");
+        clearInterval(interval);
+        openPopup("YOU WON");
     }
 }
+

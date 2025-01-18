@@ -7,6 +7,8 @@ export const render = (board) => {
 };
 /// Append HTML elements to board based on board data and fills Board map
 const renderBoard = (board) => {
+    // clears board
+    boardElement.innerHTML = "";
     boardElement.style.gridTemplateColumns = 'repeat(' + board.size + ', 1fr)';
     const fillBoardMap = (pos, boardSquare) => {
         board.boardMap.set(pos, boardSquare);
@@ -46,7 +48,5 @@ export const renderSnake = (snake, board) => {
     snake.snakePositions.forEach(pos => {
         board.paintSquare(pos.toString(), snake.snakeColor);
     });
-    console.log(...snake.snakePositions);
-    // Cleans board
     board.paintSquare(snake.previousTailPosition.toString(), "green");
 };

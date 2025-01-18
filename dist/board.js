@@ -1,3 +1,5 @@
+import { openPopup } from "./handleUI.js";
+import { interval } from "./main.js";
 import { getRandom } from "./Math/random.js";
 export class Board {
     constructor() {
@@ -5,9 +7,8 @@ export class Board {
         // So simplest way is to set key as a parsed object
         this.boardMap = new Map();
         this.handleGameOver = () => {
-            // Game over
-            alert("Game over");
-            document.location = "";
+            openPopup("YOU LOST");
+            clearInterval(interval);
         };
     }
     applySettings(gameSettings) {
@@ -25,7 +26,6 @@ export class Board {
     paintSquare(position, color) {
         this.getSquare(position).htmlElement.style.backgroundColor = color;
     }
-    // TODO: Test if works
     // Returns a random position where there is an empty square. Used for generating obstacles.
     getRandomEmptySquare() {
         // looping through array to add 

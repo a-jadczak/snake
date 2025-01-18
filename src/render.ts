@@ -3,7 +3,6 @@ import { boardElement } from "./main.js";
 import { Snake } from "./snake.js";
 import { BoardSquare } from "./boardSquare/boardSquare.js";
 import Vector2 from "./Math/vector2.js";
-import Fruit from "./Obstacles/Fruit.js";
 import { HTMLElement2D } from "./types.js";
 
 export let lastRenderedFruit: HTMLElement2D;
@@ -16,6 +15,9 @@ export const render = (board : Board) : void =>
 /// Append HTML elements to board based on board data and fills Board map
 const renderBoard = (board: Board) : void =>
 {
+    // clears board
+    boardElement.innerHTML = "";
+
     boardElement.style.gridTemplateColumns = 'repeat('+board.size+', 1fr)';
     
     const fillBoardMap = (pos : string, boardSquare : BoardSquare) : void =>
@@ -72,12 +74,9 @@ export const renderSnake = (snake : Snake, board : Board) : void =>
 {
     snake.move(board);
     
-    snake.snakePositions.forEach(pos => {
-        
+    snake.snakePositions.forEach(pos => { 
         board.paintSquare(pos.toString(), snake.snakeColor);
     });
-    console.log(...snake.snakePositions)
 
-    // Cleans board
     board.paintSquare(snake.previousTailPosition.toString(), "green");
 }

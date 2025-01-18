@@ -1,6 +1,8 @@
 import { BoardSquare } from "./boardSquare/boardSquare.js";
 import { SquareState } from "./boardSquare/squareState.js";
 import { Color } from "./Color/Color.js";
+import { openPopup } from "./handleUI.js";
+import { interval } from "./main.js";
 import { getRandom } from "./Math/random.js";
 import Vector2 from "./Math/vector2.js";
 import GameSettings from "./types/gameSettings.js";
@@ -40,7 +42,6 @@ export class Board
         this.getSquare(position).htmlElement.style.backgroundColor = color;
     }
 
-    // TODO: Test if works
     // Returns a random position where there is an empty square. Used for generating obstacles.
     public getRandomEmptySquare() : Vector2
     {
@@ -65,8 +66,7 @@ export class Board
     
     public handleGameOver = () =>
     {
-        // Game over
-        alert("Game over")
-        document.location = "";
+        openPopup("YOU LOST");
+        clearInterval(interval);
     }
 }

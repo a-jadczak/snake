@@ -15,6 +15,7 @@ let board;
 let snake;
 let intervalTime;
 let currentDirection = Vector2.LEFT;
+export let interval;
 // Interval input flag to avoid double direction change that provides a bug
 let inputIntervalFlag = false;
 const init = function () {
@@ -56,7 +57,7 @@ const updateUI = () => {
 };
 export const startGame = () => {
     init();
-    setInterval(update, intervalTime);
+    interval = setInterval(update, intervalTime);
 };
 //update();
 //setInterval(update, interval);

@@ -1,7 +1,7 @@
 import { gameSettings, startGame } from "./main.js";
 
 const popupBackground: HTMLElement = document.querySelector("#popup-background");
-const popup: HTMLElement = document.querySelector("#popup");
+const popupTitle: HTMLElement = document.querySelector(".popup-title");
 
 const popupDefaultContainer: HTMLElement = document.querySelector(".popup-default-container"); 
 const popupSettingsContainer: HTMLElement = document.querySelector(".popup-settings-container"); 
@@ -46,9 +46,10 @@ function closeSettings()
     popupSettingsContainer.style.display = "none"
 }
 
-const openPopup = () =>
+export const openPopup = (text: string) =>
 {
     popupBackground.style.opacity = "1";
+    popupTitle.textContent = text;
 }
 
 const closePopup = () =>

@@ -20,6 +20,8 @@ let snake : Snake;
 let intervalTime : number;
 let currentDirection : Vector2 = Vector2.LEFT;
 
+export let interval;
+
 // Interval input flag to avoid double direction change that provides a bug
 let inputIntervalFlag : boolean = false;
 
@@ -74,15 +76,15 @@ const update = function() : void
     inputIntervalFlag = false;
 }
 
-const updateUI = () =>
+const updateUI = () : void =>
 {
     pointsElement.textContent = snake.score.toString();
 }
 
-export const startGame = () =>
+export const startGame = () : void =>
 {
     init();
-    setInterval(update, intervalTime);
+    interval = setInterval(update, intervalTime);
 }
 
 //update();

@@ -1,6 +1,6 @@
 import { gameSettings, startGame } from "./main.js";
 const popupBackground = document.querySelector("#popup-background");
-const popup = document.querySelector("#popup");
+const popupTitle = document.querySelector(".popup-title");
 const popupDefaultContainer = document.querySelector(".popup-default-container");
 const popupSettingsContainer = document.querySelector(".popup-settings-container");
 const playBtn = popupDefaultContainer.querySelector("#popup-play-btn");
@@ -30,8 +30,9 @@ function closeSettings() {
     popupDefaultContainer.style.display = "flex";
     popupSettingsContainer.style.display = "none";
 }
-const openPopup = () => {
+export const openPopup = (text) => {
     popupBackground.style.opacity = "1";
+    popupTitle.textContent = text;
 };
 const closePopup = () => {
     popupBackground.style.opacity = "0";

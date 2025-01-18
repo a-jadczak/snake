@@ -1,5 +1,9 @@
+import { openPopup } from "./handleUI.js";
+import { interval } from "./main.js";
 export const checkWin = (score, board) => {
-    if (score == (board.size * board.size) - 1) {
-        console.log("won");
+    const requireScore = (board.size * board.size) - 1;
+    if (score == requireScore) {
+        clearInterval(interval);
+        openPopup("YOU WON");
     }
 };
