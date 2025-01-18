@@ -7,7 +7,7 @@ class Vector2 {
         this.y = y;
     }
     toString() {
-        return `${this.x}${this.y}`;
+        return `${this.x}-${this.y}`;
     }
 }
 //Static properties for shorthand

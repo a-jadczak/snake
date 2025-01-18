@@ -2,7 +2,6 @@ import { checkWin } from "./events.js";
 import Vector2 from "./Math/vector2.js";
 import { lastRenderedFruit, renderFruit, unrender } from "./render.js";
 export class Snake {
-    //#endregion
     constructor(startPosition, snakeColor) {
         this.snakeSquareStateBehaviours = new Map([
             ["empty", (board) => { }],
@@ -14,7 +13,7 @@ export class Snake {
         // Every snake's square element position
         this.snakePositions = [];
         //this.START_POSITON = startPosition;
-        this.SNAKE_COLOR = snakeColor;
+        this.snakeColor = snakeColor;
         this.snakePositions.push(startPosition);
         this.score = 0;
     }

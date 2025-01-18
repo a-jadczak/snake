@@ -6,20 +6,25 @@ import Vector2 from "./Math/vector2.js";
 export const boardElement = document.querySelector("#board");
 const gameDataElement = document.querySelector(".game-data");
 const pointsElement = gameDataElement.querySelector(".points");
-const difficultyElement = gameDataElement.querySelector(".difficulty");
+export const gameSettings = {
+    snakeColor: "lawngreen",
+    gameSpeed: 200,
+    boardSize: 10
+};
 let board;
 let snake;
-const interval = 200;
+let intervalTime;
 let currentDirection = Vector2.LEFT;
 // Interval input flag to avoid double direction change that provides a bug
 let inputIntervalFlag = false;
 const init = function () {
     board = new Board();
-    board.size = 10;
+    board.applySettings(gameSettings);
+    intervalTime = gameSettings.gameSpeed;
     render(board);
     // Sets startPosition
     const startPosition = calculateStartSnakePosition();
-    const snakeColor = "lawnGreen";
+    const snakeColor = gameSettings.snakeColor;
     snake = new Snake(startPosition, snakeColor);
     renderFruit(board);
 };
@@ -49,6 +54,9 @@ const update = function () {
 const updateUI = () => {
     pointsElement.textContent = snake.score.toString();
 };
-init();
-update();
+export const startGame = () => {
+    init();
+    setInterval(update, intervalTime);
+};
+//update();
 //setInterval(update, interval);

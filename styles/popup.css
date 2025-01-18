@@ -8,6 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    transition: 0.2s;
 }
 
 #popup
@@ -20,9 +22,11 @@
 
     display: flex;
     flex-direction: column;
+
+    transition: 0.2s;
 }
 
-.popup-content, .popup-settings-content
+.popup-default-container, .popup-settings-content
 {
     height: 100%;
     display: flex;

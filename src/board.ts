@@ -3,6 +3,7 @@ import { SquareState } from "./boardSquare/squareState.js";
 import { Color } from "./Color/Color.js";
 import { getRandom } from "./Math/random.js";
 import Vector2 from "./Math/vector2.js";
+import GameSettings from "./types/gameSettings.js";
 
 export class Board
 {
@@ -14,6 +15,10 @@ export class Board
     // So simplest way is to set key as a parsed object
     boardMap : Map<string, BoardSquare> = new Map<string, BoardSquare>();
 
+    public applySettings(gameSettings: GameSettings)
+    {
+        this.size = gameSettings.boardSize;
+    }
 
     public getSquare(position : string) : BoardSquare
     {        
@@ -30,7 +35,7 @@ export class Board
         this.getSquare(position).squareState = squareState;
     }
 
-    public paintSquare(position : string, color : Color) : void
+    public paintSquare(position : string, color : string) : void
     {
         this.getSquare(position).htmlElement.style.backgroundColor = color;
     }

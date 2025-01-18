@@ -44,9 +44,9 @@ export const unrender = (board, htmlElement2D) => {
 export const renderSnake = (snake, board) => {
     snake.move(board);
     snake.snakePositions.forEach(pos => {
-        //console.log(pos.toString())
-        board.paintSquare(pos.toString(), "blue");
+        board.paintSquare(pos.toString(), snake.snakeColor);
     });
+    console.log(...snake.snakePositions);
     // Cleans board
-    board.paintSquare(snake.previousTailPosition.toString(), "gray");
+    board.paintSquare(snake.previousTailPosition.toString(), "green");
 };

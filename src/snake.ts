@@ -21,24 +21,18 @@ export class Snake
     currentDirection : Vector2 = Vector2.LEFT;
 
     // Every snake's square element position
-    public snakePositions : Vector2[] = [
-    ];
+    public snakePositions : Vector2[] = [];
 
     // Variable containing previous last position of tail
     // it's for like cleaning boardSquare where snake last appeared instead of cleaning all boardsquares every snake move
     previousTailPosition : Vector2;
-
     nextPosition : Vector2;
+    snakeColor : string;
 
-    //#region VISUAL
-    SNAKE_COLOR : string;
-
-    //#endregion
-
-    constructor (startPosition : Vector2, snakeColor : Color)
+    constructor (startPosition : Vector2, snakeColor : string)
     {
         //this.START_POSITON = startPosition;
-        this.SNAKE_COLOR = snakeColor;
+        this.snakeColor = snakeColor;
         this.snakePositions.push(startPosition);
 
         this.score = 0;

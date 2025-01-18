@@ -73,10 +73,11 @@ export const renderSnake = (snake : Snake, board : Board) : void =>
     snake.move(board);
     
     snake.snakePositions.forEach(pos => {
-        //console.log(pos.toString())
-        board.paintSquare(pos.toString(), "blue");
+        
+        board.paintSquare(pos.toString(), snake.snakeColor);
     });
+    console.log(...snake.snakePositions)
 
     // Cleans board
-    board.paintSquare(snake.previousTailPosition.toString(), "gray");
+    board.paintSquare(snake.previousTailPosition.toString(), "green");
 }

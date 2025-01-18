@@ -10,6 +10,9 @@ export class Board {
             document.location = "";
         };
     }
+    applySettings(gameSettings) {
+        this.size = gameSettings.boardSize;
+    }
     getSquare(position) {
         return this.boardMap.get(position);
     }
