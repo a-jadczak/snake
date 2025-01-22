@@ -1,7 +1,5 @@
 import { Board } from "./board.js";
-import { BoardSquare } from "./boardSquare/boardSquare.js";
 import { SquareState } from "./boardSquare/squareState.js";
-import { Color } from "./Color/Color.js"
 import { checkWin } from "./events.js";
 import Vector2 from "./Math/vector2.js"
 import { lastRenderedFruit, renderFruit, unrender } from "./render.js";

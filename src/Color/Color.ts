@@ -1,1 +1,0 @@
-export type Color = "lawnGreen" | "blue" | "orange" | "gray";

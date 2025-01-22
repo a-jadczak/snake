@@ -1,6 +1,5 @@
 import { BoardSquare } from "./boardSquare/boardSquare.js";
 import { SquareState } from "./boardSquare/squareState.js";
-import { Color } from "./Color/Color.js";
 import { openPopup } from "./handleUI.js";
 import { interval } from "./main.js";
 import { getRandom } from "./Math/random.js";
