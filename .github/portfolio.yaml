@@ -1,0 +1,19 @@
+type:
+  - webApp
+  - game
+status: completed
+accentColor: "#7CFC00"
+technologies:
+  - TypeScript
+  - HTML
+  - CSS
+
+banner: .github/assets/screenshot-02.png
+
+gallery:
+  - .github/assets/screenshot-01.png
+  - .github/assets/screenshot-03.png
+  - .github/assets/screenshot-04.png
+  - .github/assets/screenshot-05.png
+
+descriptionPL: "Klasyczna gra Snake polegająca na zbieraniu jedzenia i unikaniu uderzeń w ściany."
